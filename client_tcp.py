@@ -1,12 +1,12 @@
 import socket
 
 if __name__ == '__main__':
-    HOST = '127.0.0.1'
+    HOST = 'localhost'
     PORT = 65432
 
-    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-        s.connect((HOST, PORT))
-        inp = input()
-        s.send(inp.encode())
-        data = s.recv(2048)
-
+    with socket.socket(socket.AF_INET6, socket.SOCK_STREAM) as client:
+        client.connect((HOST, PORT))
+        inp = input("Enter your content")
+        client.sendall(inp.encode())
+        data = client.recv(2048)
+        print(data.decode())
